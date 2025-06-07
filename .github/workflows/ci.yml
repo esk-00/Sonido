@@ -1,0 +1,30 @@
+name: CI with Docker + Lint + Test
+
+on:
+  push:
+    branches: [ "**" ]   # すべてのブランチで有効
+  pull_request:
+    branches: [ "**" ]   # PR元・PR先ともに有効
+
+jobs:
+  lint-test:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v3
+
+      - name: Build Docker image
+        run: docker build -t sonido-app .
+
+      - name: Run pre-commit
+        run: docker run --rm -v ${{ github.workspace }}:/app sonido-app pre-commit run --all-files
+
+      - name: Run pytest
+        run: docker run --rm -v ${{ github.workspace }}:/app sonido-app pytest
+
+      - name: Run mypy
+        run: docker run --rm -v ${{ github.workspace }}:/app sonido-app mypy .
