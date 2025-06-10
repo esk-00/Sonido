@@ -1,0 +1,13 @@
+black
+flake8
+isort
+bandit
+pre-commit
+gradio>=4.0.0
+pandas>=2.0.0
+plotly>=5.0.0
+boto3>=1.30.0
+transformers>=4.30.0
+torch>=2.0.0
+requests>=2.30.0
+python-dotenv>=1.0.0
