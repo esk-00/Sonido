@@ -10,7 +10,7 @@ RUN apt-get update && apt-get install -y git
 WORKDIR /app
 
 # 依存関係のインストール
-COPY requirements.txt .
+COPY docker/requirements.txt .
 RUN pip install --upgrade pip && pip install -r requirements.txt
 
 # pre-commitなど開発用ツールも入れる
