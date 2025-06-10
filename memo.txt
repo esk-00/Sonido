@@ -1,1 +1,4 @@
 image_name gradio_app
+
+#push前に
+pre-commit run --all-files
