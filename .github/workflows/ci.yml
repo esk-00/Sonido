@@ -18,7 +18,7 @@ jobs:
         uses: docker/setup-buildx-action@v3
 
       - name: Build Docker image
-        run: docker build -t sonido-app .
+        run: docker build -f docker/Dockerfile -t sonido-app .
 
       - name: Run pre-commit
         run: docker run --rm -v ${{ github.workspace }}:/app -w /app sonido-app pre-commit run --all-files
