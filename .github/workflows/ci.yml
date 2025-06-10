@@ -20,8 +20,16 @@ jobs:
       - name: Build Docker image
         run: docker build -f docker/Dockerfile -t sonido-app .
 
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12' # あなたのDockerfileのPythonバージョンに合わせる
+
+      - name: Install pre-commit (on host)
+        run: pip install pre-commit
+
       - name: Run pre-commit
-        run: docker run --rm -v ${{ github.workspace }}:/app -w /app sonido-app pre-commit run --all-files
+        run: pre-commit run --all-files
 
       - name: Run pytest
         run: docker run --rm -v ${{ github.workspace }}:/app sonido-app pytest
