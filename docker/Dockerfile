@@ -19,7 +19,4 @@ RUN pip install pre-commit
 # ソースコードを追加
 COPY . .
 
-# pre-commit 初期化（CI実行用）
-RUN pre-commit install-hooks
-
 CMD ["bash"]
