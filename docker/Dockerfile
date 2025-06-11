@@ -10,7 +10,7 @@ RUN apt-get update && apt-get install -y git
 WORKDIR /app
 
 # 依存関係のインストール
-COPY docker/requirements.txt .
+COPY requirements.txt .
 RUN pip install --upgrade pip && pip install -r requirements.txt
 
 # pre-commitなど開発用ツールも入れる
@@ -18,8 +18,5 @@ RUN pip install pre-commit
 
 # ソースコードを追加
 COPY . .
-
-# pre-commit 初期化（CI実行用）
-RUN pre-commit install-hooks
 
 CMD ["bash"]
